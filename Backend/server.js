@@ -5,12 +5,11 @@ const postRoutes = require("./routes/postRoutes");
 require("dotenv").config();
 
 const app = express();
-app.use(
-  cors({
-    origin: "*", // Update with your frontend URL during production
-    credentials: true,
-  })
-);
+app.use(cors({
+    origin: 'http://localhost:3000', // Allow requests from this origin
+    methods: 'GET,POST,PUT,DELETE', // Allowed HTTP methods
+    credentials: true, // If you want to allow cookies or authentication headers
+}));
 app.use(express.json());
 
 // Connect to MongoDB
