@@ -1,9 +1,9 @@
-const express = require('express');
-const Post = require('../models/Post');
+const express = require("express");
+const Post = require("../models/Post");
 const router = express.Router();
 
 // Create a new post
-router.post('/create', async (req, res) => {
+router.post("/create", async (req, res) => {
   const { name, message } = req.body;
   try {
     const newPost = new Post({ name, message });
@@ -15,7 +15,7 @@ router.post('/create', async (req, res) => {
 });
 
 // Get all posts
-router.get('/posts', async (req, res) => {
+router.get("/posts", async (req, res) => {
   try {
     const posts = await Post.find();
     res.status(200).json(posts);
@@ -25,7 +25,7 @@ router.get('/posts', async (req, res) => {
 });
 
 // Update a post
-router.put('/posts/:id', async (req, res) => {
+router.put("/posts/:id", async (req, res) => {
   const { id } = req.params;
   const { name, message } = req.body;
   try {
@@ -41,11 +41,11 @@ router.put('/posts/:id', async (req, res) => {
 });
 
 // Delete a post
-router.delete('/posts/:id', async (req, res) => {
+router.delete("/posts/:id", async (req, res) => {
   const { id } = req.params;
   try {
     await Post.findByIdAndDelete(id);
-    res.status(200).json({ message: 'Post deleted' });
+    res.status(200).json({ message: "Post deleted" });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
